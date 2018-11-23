@@ -1,0 +1,47 @@
+{
+  "dashboard": {
+    "WELCOME": "Welcome to {{appName}}",
+    "ENTRYPOINT": "Entry point"
+  },
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Type and hit enter.."
+    }
+  },
+  "offsidebar": {
+    "profile": {
+      "DETAILS": "Details",
+      "COUNTRY": "Country",
+      "ROLE": "Role",
+      "NOPROFILE": "No user is logged in yet"
+    }
+  },
+  "sidebar": {
+      "WELCOME": "Welcome",
+      "heading": {
+        "HEADER": "Main Navigation"
+      },
+      "nav": {
+        "HOME": "Home",
+        "menu": {
+          "MENU": "Menu",
+          "SUBMENU": "Sub menu",
+          "DATABASE": "Database",
+          "APP": "App",
+          "GAMES": "Games",
+          "DRAWS": "Draws",
+          "PRIZES": "Prizes",
+          "QUESTIONS": "Questions",
+          "LOCALIZATION": "Localization",
+          "MANAGE": "Manage",
+          "IMPORT": "Import",
+          "ADD": "Add",
+          "USERMANAGEMENT": "User Mgmt",
+          "USERS": "Users",
+          "USERICONS": "User Icons",
+          "ANNOUNCEMENTS": "Announcements",
+          "REPORTS": "Reports"
+        }
+      }
+    }
+  }

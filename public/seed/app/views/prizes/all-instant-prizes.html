@@ -1,0 +1,157 @@
+﻿<h3>
+    Market InstantPrizes
+    <small>Get all market instantPrize details, modify or delete a selected one.</small>
+</h3>
+<div ng-controller="InstantPrizeController as scope">
+    <div class="panel panel-default" ng-hide="scope.instantPrize">
+        <div class="panel-heading">
+            All instantPrizes
+        </div>
+        <div class="panel-body table-responsive b0">
+            <div>
+                <div class="text-right mt-lg">
+                    <button class="btn" type="button" ng-click="scope.newInstantPrize()">Add new</button>
+                </div>
+                <table class="table table-striped table-hover" datatable="">
+                    <thead>
+                        <tr>
+                            <th>InstantPrize ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Deleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in scope.instantPrizes">
+                            <td><button class="btn btn-info" ng-click="scope.setInstantPrize(item)" type="button">{{ item.id }}</button></td>
+                            <td>{{ item.name ? item.name.en : '' }}</td>
+                            <td>{{ item.description ? item.description.en : '' }}</td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled="disabled" ng-checked="item.isDeleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col col-md-8"></div>
+                <div class="col col-md-4 input-group pull-right">
+                    <paging paging="scope.paging"></paging>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-hide="!scope.instantPrize">
+        <div class="panel-body table-responsive b0">
+            <fieldset ng-show="scope.instantPrize.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Deleted:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" disabled="disabled" ng-checked="scope.instantPrize.isDeleted" />
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="scope.instantPrize.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-10">
+                        <label class="form-control">{{scope.instantPrize.id}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Title:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text language-object="scope.instantPrize.title" default="en"></multi-lang-text>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Description:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text-area language-object="scope.instantPrize.description" default="en"></multi-lang-text-area>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Completed:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" ng-model="scope.instantPrize.isCompleted" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Url:</label>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{scope.instantPrize.imageUrl}}" alt="" />
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" ng-model="scope.instantPrize.imageUrl" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Square Url:</label>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{scope.instantPrize.imageSquareUrl}}" alt="" />
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" ng-model="scope.instantPrize.imageSquareUrl" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Start Date:</label>
+                    <div class="col-md-10">
+                        <!--<input class="form-control" type="datetime" ng-model="scope.instantPrize.startsAt" />-->
+                        <datetime-picker ng-model="scope.instantPrize.startsAt"></datetime-picker>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label class="col-md-2 control-label">Termination Date:</label>
+                <div class="col-md-10">
+                    <!--<input class="form-control" type="datetime" ng-model="scope.instantPrize.endsAt" />-->
+                    <datetime-picker ng-model="scope.instantPrize.endsAt"></datetime-picker>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Stock (Prizes#):</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="scope.instantPrize.itemsInStock" />
+                    </div>
+                    <label class="col-md-2 control-label">Prize Cost (Gems):</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="scope.instantPrize.costInGems" />
+                    </div>
+                    <label class="col-md-2 control-label">Max purchases per User:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="scope.instantPrize.maxCountPerUser" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="text-right mt-lg">
+            <button class="btn" type="button" ng-click="scope.backToInstantPrizes()">Discard</button>
+            <button class="btn btn-success" type="button" ng-hide="scope.instantPrize.id" ng-click="scope.saveNewInstantPrize()">Insert</button>
+            <button class="btn btn-success" type="button" ng-show="scope.instantPrize.id" ng-click="scope.updateInstantPrize()">Save</button>
+            <button class="btn btn-warning" type="button" ng-show="scope.instantPrize.id" ng-click="scope.deleteInstantPrize()">Delete</button>
+        </div>
+
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</div>

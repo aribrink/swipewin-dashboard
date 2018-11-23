@@ -1,0 +1,158 @@
+﻿<h3>
+    Question Corpus
+    <small>Get all questions in the question corpus.</small>
+</h3>
+<div ng-controller="QuestionController as table">
+    <div class="panel panel-default" ng-hide="table.question">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col col-md-10">
+                    <button class="btn btn-default" ng-click="table.getAllQuestions()">
+                        <span class="btn-label">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </span>
+                    </button>
+                </div>
+                <div class="col col-md-2 pull-right">
+                    <div class="text-right">
+                        <button class="btn" type="button" ng-click="table.newQuestion()">Add new</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive b0">
+            <div>
+                <table class="table table-striped table-hover" datatable="">
+                    <thead>
+                        <tr>
+                            <th>Question ID</th>
+                            <th>Category</th>
+                            <th>Title</th>
+                            <th>Deleted</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <select class="form-control" ng-options="o.id as o.value for o in table.categoryOptions" ng-model="table.filter.category">
+                                    <option value="">all</option>
+                                </select>
+                            </th>
+                            <th></th>
+                            <th>
+                                <select class="form-control" ng-options="o for o in [true, false]" ng-model="table.filter.isDeleted">
+                                    <option value="">all</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in table.questions">
+                            <!--<td><a ui-sref-active="active" ui-sref="app.questions_detail({ questionId: item.id })">{{ item.id }}</a></td>-->
+                            <td><button class="btn btn-info" ng-click="table.setQuestion(item)" type="button">{{ item.id }}</button></td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.title ? item.title.en : '' }}</td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled="disabled" ng-checked="item.isDeleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col col-md-8"></div>
+                <div class="col col-md-4 input-group pull-right">
+                    <paging paging="table.paging"></paging>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-hide="!table.question">
+        <uib-tabset justified="true">
+            <uib-tab>
+                <uib-tab-heading>Main Data</uib-tab-heading>
+                <div>
+                    <fieldset ng-show="table.question.id">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Deleted:</label>
+                            <div class="col-md-10 switch">
+                                <input type="checkbox" disabled="disabled" ng-checked="table.question.isDeleted" />
+                                <span></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset ng-show="table.question.id">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Id:</label>
+                            <div class="col-md-10">
+                                <label class="form-control">{{table.question.id}}</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Title:</label>
+                            <div class="col-md-10">
+                                <multi-lang-text language-object="table.question.title" default="en"></multi-lang-text>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Category:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" ng-model="table.question.category" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Answer:</label>
+                            <div class="col-md-10" ng-if="table.question.type != 'get 4 of 6' && table.question.type != 'how close'">
+                                <select class="form-control" ng-options="key as (val.title.en +'(' + key + ')') for (key, val) in table.question.choices" ng-model="table.question.answer">
+                                    <!--<select class="form-control" ng-options="i as i.value for i in answerOptions track by i.id" ng-model="question.answer">-->
+                                    <!--<select chosen="" width="200" class="chosen-select" ng-options="i.id as i.value for i in answerOptions" ng-model="question.answer">-->
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-md-10" ng-if="table.question.type == 'get 4 of 6'">
+                                <select chosen="" multiple="multiple" width="200" class="chosen-select" ng-options="key as (val.title.en +'(' + key + ')') for (key, val) in table.question.choices" ng-model="table.question.answer">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-md-10" ng-if="table.question.type == 'how close'">
+                                <div class="row">
+                                    <div class="col col-md-2">
+                                        <input class="form-control" type="number" ng-model="table.question.answer" ng-change="table.computeHowCloseRange()" min="0" />
+                                    </div>
+                                    <div class="col col-md-2 text-right">
+                                        <div class="text-bold text-muted">{{table.question.choiceMinimum}}</div>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <uib-progressbar class="progress-xs m0" value="howCloseProgress" type="info"></uib-progressbar>
+                                    </div>
+                                    <div class="col col-md-2 text-left">
+                                        <div class="text-bold text-muted">{{table.question.choiceMaximum}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+        <div class="text-right mt-lg">
+            <button class="btn" type="button" ng-click="table.backToQuestions()">Discard</button>
+            <button class="btn btn-success" type="button" ng-hide="table.question.id" ng-click="table.saveNewQuestion()">Insert</button>
+            <button class="btn btn-success" type="button" ng-show="table.question.id" ng-click="table.updateQuestion()">Save</button>
+            <button class="btn btn-warning" type="button" ng-show="table.question.id" ng-click="table.deleteQuestion()">Delete</button>
+        </div>
+
+    </div>
+
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</div>

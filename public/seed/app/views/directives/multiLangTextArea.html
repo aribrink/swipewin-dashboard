@@ -1,0 +1,56 @@
+<div style="clear:both" class="p0 mt-lg mb-sm">
+    <!--   LABEL   -->
+    <label class="pull-left" ng-show="label">{{label}}</label>
+    
+    <!-- INPUTS    -->
+    <div class="">
+       <div style="    width: 1%;
+    float: right;" ng-if="selected" class="input-group">
+        <div uib-dropdown class="input-group-btn">
+            <button type="button" tabindex="-1" class="btn btn-default btn-xs">{{selected}}</button>
+            <button type="button" uib-dropdown-toggle class="btn btn-default btn-xs">
+                           <span class="caret"></span>
+                        </button>
+
+            <ul class="dropdown-menu pull-right">
+                <li ng-repeat="(key,val) in lObject"><a href="" ng-click="select(key)">{{key}}</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="" ng-click="addNew()">Add new</a>
+                </li>
+            </ul>
+            
+             <button type="button" ng-click="delete(selected)" class="btn btn-default btn-xs"><em class="fa fa-trash"></em></button>
+        </div>       
+       
+    </div>
+
+    <div ng-if="!selected" style="clear:both" class="input-group">
+        <div uib-dropdown="" class="input-group-btn">
+            <button type="button" uib-dropdown-toggle="" class="btn btn-default">
+                           <span class="caret"></span>
+                        </button>
+
+            <ul class="dropdown-menu">
+                <li ng-repeat="(key,val) in lObject"><a href="" ng-click="select(key)">{{key}}</a>
+                </li>
+            </ul>
+        </div>
+        <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />
+        <div class="input-group-btn">
+            <button type="button" ng-click="pushLangKey(newLangKey)"class="btn btn-default"><em class="fa fa-plus"></em></button>
+        </div>
+    </div>
+    </div>
+    
+     
+
+    <div ng-show="selected" class="col-xs-12 p0" style="margin-top:1px;">
+        <div>
+            <textarea type="textArea"  class="form-control" style="max-width:100%; border-color: #eaeaea;"
+                ng-model="lObject[selected]" />
+        </div>
+    </div>
+
+    <div style="clear: both"></div>
+</div>

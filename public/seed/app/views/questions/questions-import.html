@@ -1,0 +1,36 @@
+﻿<h3>Import Questions from csv</h3>
+<form class="panel" ng-controller="QuestionImportController as scope" container>
+    <div class="alert alert-success" role="alert" ng-hide="!okMsg">{{okMsg}}</div>
+    <div class="alert alert-info" role="alert" ng-hide="!infoMsg">{{infoMsg}}</div>
+    <div class="alert alert-warning" role="alert" ng-hide="!warnMsg">{{warnMsg}}</div>
+    <div class="alert alert-danger" role="alert" ng-hide="!alertMsg">{{alertMsg}}</div>
+    <div class="panel-body">
+        <h4 class="page-header mt0">Select file</h4>
+        <div>
+            <!--<input class="form-control" filestyle="" type="file" data-button-text="Select csv file" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="scope.uploader" />-->
+            <input class="form-control" type="file" ng-model="scope.fileToUpload" />
+        </div>
+        <h4>Options</h4>
+        <div class="row">
+            <label class="col-sm-3 control-label">Includes a Header row: </label>
+            <div class="col-sm-9">
+                <input type="checkbox" ng-model="scope.model.header">
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-3 control-label">Delimiter: </label>
+            <div class="col-sm-9">
+                <select class="form-control" ng-options="i.value as i.key for i in scope.allDelimiters" ng-model="scope.model.delimiter"> </select>
+            </div>
+        </div>
+        <div class="row"></div>
+
+        <div class="row">
+            <button type="button" class="btn btn-primary" ng-click="scope.upload()">Upload</button>
+        </div>
+    </div>
+    <div class="panel-footer">
+    </div>
+
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</form>

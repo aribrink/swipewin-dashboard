@@ -1,0 +1,45 @@
+<div class="p0 mb-sm" style="clear:both;">
+    <!--   LABEL   -->
+    <label ng-show="label">{{label}}</label>
+
+    <!-- INPUTS    -->
+    <div ng-if="key" class="input-group">
+        <div uib-dropdown="" class="input-group-btn">
+            <button type="button" tabindex="-1" class="btn btn-default">{{key}}</button>
+            <button type="button" uib-dropdown-toggle class="btn btn-default">
+                           <span class="caret"></span>
+                        </button>
+
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li ng-repeat="(key,val) in lObject"><a href="" ng-click="select(key)">{{key}}</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="" ng-click="addNew()">Add new</a>
+                </li>
+            </ul>
+        </div>
+        <div ng-show="key && lObject">
+            <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="lObject[key]" />
+        </div>
+        <div uib-dropdown="" class="input-group-btn">
+            <button type="button" ng-click="delete(key)" tabindex="2" class="btn btn-default"><em class="fa fa-trash"></em></button>
+        </div>
+    </div>
+
+    <div ng-if="!key" class="input-group">
+        <div uib-dropdown="" class="input-group-btn">
+            <button type="button" uib-dropdown-toggle="" class="btn btn-default">
+                           <span class="caret"></span>
+                        </button>
+
+            <ul class="dropdown-menu">
+                <li ng-repeat="(key,val) in lObject"><a href="" ng-click="select(key)">{{key}}</a>
+                </li>
+            </ul>
+        </div>
+        <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />
+        <div class="input-group-btn">
+            <button type="button" ng-click="pushLangKey(newLangKey)" tabindex="2" class="btn btn-default"><em class="fa fa-plus"></em></button>
+        </div>
+    </div>
+</div>

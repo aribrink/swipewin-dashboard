@@ -1,0 +1,86 @@
+﻿<div class="row">
+    <div class="col col-lg-1">
+        <label class="control-label">Id:</label>
+    </div>
+    <div class="col col-lg-5">
+        <div class="form-group">
+            <input class="form-control" type="text" disabled ng-model="$ctrl.rule.id" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-lg-1">
+        <label class="control-label">Ability:</label>
+    </div>
+    <div class="col col-lg-2">
+        <div class="form-group">
+            <select class="form-control" ng-disabled="$ctrl.disabled" ng-options="o for o in $ctrl.typeOptions" ng-model="$ctrl.rule.type"> </select>
+        </div>
+    </div>
+    <div class="col col-lg-2">
+        <label class="control-label">Applicable in Game(s):</label>
+    </div>
+    <div class="col col-lg-4">
+        <div class="form-group px-5">
+            <!--<input class="form-control" type="text" ng-model="rule.triggeringStates" />-->
+            <select chosen="" width="200" multiple="multiple" class="chosen-select" ng-disabled="$ctrl.disabled" ng-options="i for i in $ctrl.gameScopeOptions" ng-model="$ctrl.rule.gameModeScopes">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="col col-lg-1">
+        <label class="control-label">Modifier:</label>
+    </div>
+    <div class="col col-lg-2" ng-if="$ctrl.rule.type !== 'question-hint' && $ctrl.rule.type !== 'question-skip'">
+        <div class="form-group">
+            <input class="form-control" ng-disabled="$ctrl.disabled" type="number" ng-model="$ctrl.rule.modifier" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-lg-1">
+        <label class="control-label">Title:</label>
+    </div>
+    <div class="col col-lg-4">
+        <div class="form-group">
+            <multi-lang-text language-object="$ctrl.rule.title" default="en" ng-disabled="$ctrl.disabled"></multi-lang-text>
+        </div>
+    </div>
+    <div class="col col-lg-1">
+        <label class="control-label">Max Uses:</label>
+    </div>
+    <div class="col-lg-1">
+        <div class="form-group">
+            <input class="form-control" type="number" ng-disabled="$ctrl.disabled" ng-model="$ctrl.rule.maxUsesAllowed" min="0" />
+        </div>
+    </div>
+    <div class="col col-lg-1">
+        <label class="control-label">Ability Is Stackable:</label>
+    </div>
+    <div class="col-lg-1">
+        <div class="form-group">
+            <div class="switch">
+                <input type="checkbox" ng-disabled="$ctrl.disabled" ng-checked="$ctrl.rule.isStackable" />
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="col col-lg-1">
+        <label class="control-label">Sprite Name:</label>
+    </div>
+    <div class="col col-lg-2">
+        <div class="form-group">
+            <input class="form-control" type="text" ng-disabled="$ctrl.disabled" ng-model="$ctrl.rule.spriteName" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-lg-1">
+        <label class="control-label">Subtitle:</label>
+    </div>
+    <div class="col col-lg-11">
+        <div class="form-group">
+            <multi-lang-text-area language-object="$ctrl.rule.subtitle" default="en" ng-disabled="$ctrl.disabled"></multi-lang-text-area>
+        </div>
+    </div>
+</div>

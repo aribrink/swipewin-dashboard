@@ -1,0 +1,135 @@
+﻿<uib-tabset justified="true" ng-if="$ctrl.item">
+    <uib-tab>
+        <uib-tab-heading>Main Data</uib-tab-heading>
+        <div>
+            <fieldset ng-show="$ctrl.item.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Deleted:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" disabled="disabled" ng-checked="$ctrl.item.isDeleted" />
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="$ctrl.item.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-10">
+                        <label class="form-control">{{$ctrl.item.id}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Name:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text language-object="$ctrl.item.name" default="en" ng-disabled="$ctrl.disabled"></multi-lang-text>
+                        <!--<input class="form-control" type="text" ng-model="item.name.en" />-->
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Description:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text-area language-object="$ctrl.item.description" default="en" ng-disabled="$ctrl.disabled"></multi-lang-text-area>
+                        <!--<input class="form-control" type="text" ng-model="item.description.en" />-->
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Unity Prefab Name:</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" ng-model="$ctrl.item.prefabName" ng-disabled="$ctrl.disabled" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Duration:</label>
+                    <div class="col-md-10">
+                        <!--<input class="form-control" type="text" ng-model="$ctrl.item.duration"  ng-disabled="$ctrl.disabled"/>-->
+                        <duration-iso disabled="$ctrl.disabled" duration="$ctrl.item.duration"></duration-iso>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Rarity:</label>
+                    <div class="col-md-10">
+                        <select class="form-control" ng-options="rarity for rarity in $ctrl.rarityOptions" ng-model="$ctrl.item.rarity" ng-disabled="$ctrl.disabled"> </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Is Permanent:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" ng-checked="$ctrl.item.isPermanent"  ng-disabled="$ctrl.disabled"/>
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="url" ng-model="$ctrl.item.imageUrl" ng-disabled="$ctrl.disabled" />
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{$ctrl.item.imageUrl}}" alt="" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Price (Coins):</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" ng-model="$ctrl.item.priceInCoins" min="0"  ng-disabled="$ctrl.disabled"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Price (Gems):</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" ng-model="$ctrl.item.priceInGems" min="0" ng-disabled="$ctrl.disabled" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Min level to Unlock:</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" ng-model="$ctrl.item.minLevelToUnlock" min="0" ng-disabled="$ctrl.disabled" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </uib-tab>
+    <uib-tab>
+        <uib-tab-heading>Item Buffs</uib-tab-heading>
+        <div class="row">
+            <div class="col col-lg-2">
+                <label class="control-label">List of Buffs:</label>
+            </div>
+            <div class="col col-lg-10">
+                <div class="form-group px-5">
+                    <select chosen="" width="200" multiple class="chosen-select" ng-disabled="$ctrl.disabled" ng-options="i as i.title.en for i in $ctrl.allRules track by i.id" ng-model="$ctrl.item.rewardRules">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="rule in $ctrl.item.rewardRules">
+                    <item-reward-rule rule="rule" disabled="true"></item-reward-rule>
+                </li>
+            </ul>
+        </div>
+    </uib-tab>
+</uib-tabset>
+
+

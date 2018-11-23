@@ -1,0 +1,25 @@
+<h3 class="text-center text-thin">Dashboard Settings</h3>
+
+<form class="form-horizontal" method="get">
+    <div class="form-group">
+        <label class="col-sm-6 control-label">Environment</label>
+        <div class="col-sm-6">
+            <div class="radio">
+                <label>
+                    <input id="optionsEnvLoc" type="radio" name="environmentRadios" ng-model="settings.settings.environment" ng-change="settings.SetEnvironment(settings.settings.environment)" value="local" />Local
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input id="optionsEnvDev" type="radio" name="environmentRadios" ng-model="settings.settings.environment" ng-change="settings.SetEnvironment(settings.settings.environment)" value="development" />Development
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input id="optionsEnvProd" type="radio" name="environmentRadios" ng-model="settings.settings.environment" ng-change="settings.SetEnvironment(settings.settings.environment)" value="production" />Production
+                </label>
+            </div>
+        </div>
+    </div>
+
+</form>

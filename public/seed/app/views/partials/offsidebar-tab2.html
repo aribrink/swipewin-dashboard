@@ -1,0 +1,48 @@
+<h3 class="text-center text-thin">User Profile</h3>
+
+<div class="col" ng-hide="!$root.globals.currentUser">
+    <ul class="nav">
+        <li>
+            <a class="media-box p mt0" href="#">
+                <span class="pull-right">
+                    <span class="circle circle-success circle-lg"></span>
+                </span>
+                <span class="pull-left">
+                    <!-- Contact avatar-->
+                    <img class="media-box-object img-circle thumb48" default-portrait src={{$root.globals.currentUser.avatar}} alt="Image" />
+                </span>
+                <!-- Contact info-->
+                <span class="media-box-body">
+                    <span class="media-box-heading">
+                        <strong>{{$root.globals.currentUser.displayName}}</strong>
+                        <br />
+                        <small class="text-muted">{{$root.globals.currentUser.email}}</small>
+                    </span>
+                </span>
+            </a>
+        </li>
+
+    </ul>
+    <div class="p">
+        <div class="row">
+            <small class="text-muted" translate="offsidebar.profile.DETAILS">Details</small>
+        </div>
+        <div class="row">
+            <label class="col-md-3 control-label" translate="offsidebar.profile.COUNTRY">Country</label>
+            <div class="col-md-9">{{$root.globals.currentUser.country}}</div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 control-label" translate="offsidebar.profile.ROLE">Role</label>
+            <div class="col-md-9">{{$root.globals.currentUser.role}}</div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 control-label">Id</label>
+            <div class="col-md-9">{{$root.globals.currentUser.id}}</div>
+        </div>
+    </div>
+</div>
+<div ng-hide="$root.globals.currentUser">
+    <div class="p text-center">
+        <strong translate="offsidebar.profile.NOPROFILE">No user is logged in yet.</strong>
+    </div>
+</div>

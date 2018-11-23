@@ -1,0 +1,142 @@
+﻿<uib-tabset justified="true">
+    <uib-tab>
+        <uib-tab-heading>Main Data</uib-tab-heading>
+        <fieldset ng-show="$ctrl.user.id">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Deleted:</label>
+                <div class="col-md-10 switch">
+                    <input type="checkbox" disabled="disabled" ng-checked="$ctrl.user.isDeleted" />
+                    <span></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset ng-show="$ctrl.user.id">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Id:</label>
+                <div class="col-md-10">
+                    <label class="form-control">{{$ctrl.user.id}}</label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-2 control-label">User name:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="$ctrl.user.displayName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Real name:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="$ctrl.user.realName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Email:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="email" ng-model="$ctrl.user.email" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Country:</label>
+                <div class="col-md-10">
+                    <div class="input-group mb">
+                        <select chosen="" width="200" class="chosen-select form-control input-md" ng-options="i.code as (i.name + ' (' + i.code + ')') for i in $ctrl.countryCodes" ng-model="$ctrl.user.country">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">MSISDN:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="tel" ng-model="$ctrl.user.msisdn" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender :</label>
+                <div class="col-md-10">
+                    <select class="form-control" ng-options="o for o in $ctrl.genderOptions" ng-model="$ctrl.user.gender"> </select>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Image:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="url" ng-model="$ctrl.user.avatar" />
+                </div>
+                <div class="col-md-2">
+                    <img class="img-rounded thumb80" default-portrait src="{{$ctrl.user.avatar}}" alt="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Role:</label>
+                <div class="col-md-8">
+                    <select class="form-control" ng-options="o for o in $ctrl.roleOptions" ng-model="$ctrl.user.role"> </select>
+                </div>
+            </div>
+        </fieldset>
+    </uib-tab>
+    <uib-tab>
+        <uib-tab-heading ng-style="$ctrl.user.draws && $ctrl.user.draws.length > 0 ? {'font-style': 'italic'} : {}">Draws</uib-tab-heading>
+        <div>
+            <table class="table table-striped table-hover" datatable="">
+                <thead>
+                    <tr>
+                        <th>Draw ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in $ctrl.user.draws">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.title ? item.title.en : '' }}</td>
+                        <td>{{ item.description ? item.description.en : '' }}</td>
+                        <td>
+                            <label class="col-md-10 switch">
+                                <input type="checkbox" disabled="disabled" ng-checked="item.isCompleted" />
+                                <span></span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </uib-tab>
+    <uib-tab>
+        <uib-tab-heading ng-style="$ctrl.user.instantPrizes && $ctrl.user.instantPrizes.length > 0 ? {'font-style': 'italic'} : {}">Instant Prizes</uib-tab-heading>
+        <div>
+            <table class="table table-striped table-hover" datatable="">
+                <thead>
+                    <tr>
+                        <th>Prize ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Acquisition Date:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in $ctrl.user.instantPrizes">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name ? item.name.en : '' }}</td>
+                        <td>{{ item.description ? item.description.en : '' }}</td>
+                        <td>{{ item.acquiredAt }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </uib-tab>
+</uib-tabset>
+<div class="text-right mt-lg">
+    <button class="btn" type="button" ng-click="$ctrl.backToUsers()">Discard</button>
+    <button class="btn btn-success" type="button">Save</button>
+    <button class="btn btn-warning" type="button" ng-show="$ctrl.user.id" ng-click="$ctrl.deleteUser()">Delete</button>
+</div>

@@ -1,0 +1,83 @@
+﻿<h3>App Settings</h3>
+
+<form class="form-horizontal" method="get" ng-controller="GameSettingsController as settings">
+    <div class="panel panel-warning">
+        <div class="panel-heading">Warning</div>
+        <div class="panel-body">
+            Be VERY careful when editing values here!
+        </div>
+    </div>
+    <div class="container-md">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel b">
+                    <div class="panel-heading bg-gray-lighter text-bold">Settings Categories</div>
+                    <div class="list-group" ng-init="settingActive = 1">
+                        <a class="list-group-item" href="" ng-click="settingActive=1" ng-class="{'active': (settingActive == 1)}">Game Variables</a>
+                        <a class="list-group-item" href="" ng-click="settingActive=2" ng-class="{'active': (settingActive == 2)}">Localization</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div ng-show="settingActive == 1">
+                    <div class="panel b">
+                        <div class="panel-heading bg-gray-lighter text-bold">Game variables</div>
+                        <div class="panel-body">
+                            <div class="form-group mb">
+                                <label class="col-sm-2 control-label">Game Duration (seconds)</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control input-md" type="number" min="1" ng-model="settings.model['swipewin-user-entry']['durationSeconds']" uib-tooltip="Defines the maximum game session duration in seconds" />
+                                </div>
+                            </div>
+                            <div class="form-group mb">
+                                <label class="col-sm-2 control-label">Wrong answer Penalty (seconds)</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control input-md" type="number" min="0" ng-model="settings.model['swipewin-user-entry']['wrongAnswerPenaltySeconds']" uib-tooltip="Defines the session time penalty in seconds the user gets when giving a wrong answer" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="settingActive == 2">
+                    <div class="panel b">
+                        <div class="panel-heading bg-gray-lighter text-bold">Language Localization</div>
+                        <div class="panel-body">
+                            <uib-tabset justified="true">
+                                <uib-tab ng-repeat="(localeKey, localeValue) in settings.model['localization']">
+                                    <uib-tab-heading>Locale: {{localeKey}}</uib-tab-heading>
+                                    <div class="form-group mb" ng-repeat="(key, value) in localeValue">
+                                        <label class="col-sm-2 control-label">{{key}}</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control input-md" type="text" min="0" ng-model="value" />
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="settingActive == 12">
+                    <div class="panel b">
+                        <div class="panel-heading bg-gray-lighter text-bold" style="background-color:greenyellow">Server Configuration (read-only)</div>
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-block" type="button" ng-show="!settings.serverSettings" ng-click="settings.getServerSettings()">Fetch Server Settings</button>
+                            <div class="form-group mb" ng-show="settings.serverSettings" ng-repeat="(key, value) in settings.serverSettings">
+                                <label class="col-sm-3 control-label">{{key}}</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control input-md" disabled="disabled" type="text" ng-model="value" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-right mt-lg">
+                <button class="btn" type="button" ng-click="settings.backToHome()">Discard</button>
+                <button class="btn btn-success" type="button" ng-click="settings.save()">Update Settings</button>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,59 @@
+{
+  "version": "0.2.0",
+  "scripts": {
+    "start": "node ./bin/http-server",
+    "pretest": "stylezero bin/ lib/ test",
+    "test": "vows --spec --isolate"
+  },
+  "dependencies": {
+    "angular-bootstrap-datetimepicker": "^1.0.1",
+    "colors": "1.0.3",
+    "ecstatic": "~0.5.6",
+    "mkdirp": "^0.5.1",
+    "opener": "~1.4.0",
+    "optimist": "0.6.x",
+    "portfinder": "0.2.x",
+    "union": "~0.4.6"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.1.1",
+    "electron-prebuilt": "^0.35.4",
+    "gulp-develop-server": "^0.5.0",
+    "gulp-server-livereload": "^1.5.4",
+    "request": "2.49.x",
+    "stylezero": "2.1.1",
+    "vows": "0.7.x"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "http-server": "./bin/http-server",
+    "hs": "./bin/http-server"
+  },
+  "gitHead": "4407db12d676a948eef7a2262490bdda4e07b3e9",
+  "homepage": "https://github.com/nodeapps/http-server",
+  "maintainers": [
+    {
+      "name": "indexzero",
+      "email": "charlie.robbins@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "6c23ea345d7db567a91f772924d2de6226b3f4cd",
+    "tarball": "http://registry.npmjs.org/http-server/-/http-server-0.7.4.tgz"
+  },
+  "directories": {},
+  "readme": "ERROR: No README data found!",
+  "subdomain": "sportimo",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "name": "Swipe_Win_Dashboard",
+  "bundledDependencies": [
+    "colors",
+    "ecstatic",
+    "opener",
+    "optimist",
+    "portfinder",
+    "union"
+  ]
+}

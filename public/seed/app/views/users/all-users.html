@@ -1,0 +1,55 @@
+﻿<h3>
+    Users
+    <small>Get all user accounts, modify or delete one user account.</small>
+</h3>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        All users
+    </div>
+    <div class="panel-body table-responsive b0" ng-controller="UserController as table">
+        <div ng-hide="table.user">
+            <div class="alert alert-info" style="overflow-wrap:break-word" role="alert" ng-hide="!table.infoMsg">{{table.infoMsg}}</div>
+            <table class="table table-striped table-hover" datatable="">
+                <thead>
+                    <tr>
+                        <th>Person ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Deleted</th>
+                    </tr>
+                </thead>
+                <tbody ng-hide="table.users.length === 0">
+                    <tr ng-repeat="auser in table.users">
+                        <!--<td><a ui-sref-active="active" ui-sref="app.users_detail({ userId: user.id })">{{ auser.id }}</a></td>-->
+                        <td><button class="btn btn-info" ng-click="table.setUser(auser)" type="button" >{{ auser.id }}</button></td>
+                        <td>{{ auser.displayName }}</td>
+                        <td>{{ auser.email }}</td>
+                        <td>
+                            <label class="col-md-10 switch">
+                                <input type="checkbox" disabled="disabled" ng-checked="auser.isDeleted" />
+                                <span></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="col-md-10 switch">
+                                <button class="btn btn-info" ng-click="table.generateToken(auser.id)">Generate token</button>
+                                <span></span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <paging paging="table.paging"></paging>
+
+                <!--<div class="text-right mt-lg">-->
+                <div class="text-right">
+                    <button class="btn" type="button" ng-click="table.newUser()">Add new</button>
+                </div>
+            </div>
+        </div>
+        <div ng-show="table.user">
+            <user-detail user="table.user"></user-detail>
+        </div>
+    </div>
+</div>

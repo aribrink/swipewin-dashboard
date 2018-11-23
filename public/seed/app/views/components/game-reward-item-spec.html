@@ -1,0 +1,14 @@
+﻿<div class="form-group mb">
+        <label class="col-sm-1 control-label">Chest:</label>
+        <div class="col-sm-5">
+            <select class="form-control" ng-options="i.id as i.name.en for i in $ctrl.allRewardItems" ng-model="$ctrl.rewardItem.id"> </select>
+        </div>
+        <label class="col-sm-1 control-label">Weight:</label>
+        <div class="col-sm-2">
+            <input class="form-control input-sm" type="number" min="0" ng-model="$ctrl.rewardItem.weight" />
+        </div>
+        <label class="col-sm-1 control-label">Quantity:</label>
+        <div class="col-sm-2">
+            <input class="form-control input-sm" type="number" min="1" ng-model="$ctrl.rewardItem.quantity" />
+        </div>
+</div>

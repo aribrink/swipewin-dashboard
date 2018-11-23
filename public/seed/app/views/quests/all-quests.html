@@ -1,0 +1,154 @@
+﻿<h3>
+    Quests
+    <small>Manage all quests.</small>
+</h3>
+<div ng-controller="QuestController as ctrl">
+    <div class="panel panel-default" ng-hide="ctrl.quest">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col col-md-10">
+                    <button class="btn btn-default" ng-click="ctrl.getAllQuests()">
+                        <span class="btn-label">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </span>
+                    </button>
+                </div>
+                <div class="col col-md-2 pull-right">
+                    <div class="text-right">
+                        <button class="btn" type="button" ng-click="ctrl.newQuest()">Add new</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive b0">
+            <div>
+                <table class="table table-striped table-hover" datatable="">
+                    <thead>
+                        <tr>
+                            <th>Quest ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Deleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.quests">
+                            <!--<td><a ui-sref-active="active" ui-sref="app.quests_detail({ questId: item.id })">{{ item.id }}</a></td>-->
+                            <td><button class="btn btn-info" ng-click="ctrl.setQuest(item)" type="button">{{ item.id }}</button></td>
+                            <td>{{ item.title ? item.title.en : '' }}</td>
+                            <td>{{ item.description ? item.description.en : '' }}</td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled="disabled" ng-checked="item.isDeleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col col-md-8"></div>
+                <div class="col col-md-4 input-group pull-right">
+                    <paging paging="ctrl.paging"></paging>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="ctrl.quest">
+        <div class="panel-body table-responsive b0">
+            <fieldset ng-show="ctrl.quest.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Deleted:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" disabled="disabled" ng-checked="ctrl.quest.isDeleted" />
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="ctrl.quest.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-10">
+                        <label class="form-control">{{ctrl.quest.id}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Daily Quest?:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" ng-checked="ctrl.quest.isDailyQuest" ng-model="ctrl.quest.isDailyQuest" ng-change="ctrl.setDailyQuest()" />
+                        <span></span> 
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Title:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text language-object="ctrl.quest.title" default="en"></multi-lang-text>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Description:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text-area language-object="ctrl.quest.description" default="en"></multi-lang-text-area>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Achieve with EITHER Conditions:</label>
+                    <div class="col-md-10">
+                        <select ng-disabled="ctrl.quest.isDailyQuest" chosen="" width="200" multiple class="chosen-select" ng-options="i for i in ctrl.questConditions" ng-model="ctrl.quest.orConditions">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Times to Complete:</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" ng-model="ctrl.quest.valueGreaterEqualThan" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Claim Rewards:</label>
+                    <div class="col-md-10">
+                        <select chosen="" width="200" multiple class="chosen-select" ng-options="i.id as i.name.en for i in ctrl.rewards | orderBy : i.id" ng-model="ctrl.quest.rewards">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Url:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="url" ng-model="ctrl.quest.imageUrl" min="1" />
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{ctrl.quest.imageUrl}}" alt="" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="text-right mt-lg">
+            <button class="btn" type="button" ng-click="ctrl.backToQuests()">Discard</button>
+            <button class="btn btn-success" type="button" ng-hide="ctrl.quest.id" ng-click="ctrl.saveNewQuest()">Insert</button>
+            <button class="btn btn-success" type="button" ng-show="ctrl.quest.id" ng-click="ctrl.updateQuest()">Save</button>
+            <button class="btn btn-warning" type="button" ng-show="ctrl.quest.id" ng-click="ctrl.deleteQuest()">Delete</button>
+        </div>
+
+    </div>
+
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</div>

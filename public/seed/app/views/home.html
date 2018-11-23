@@ -1,0 +1,32 @@
+<h3>
+   <!-- START Language list-->
+   <div class="pull-right">
+      <div class="btn-group" uib-dropdown="" is-open="language.listIsOpen">
+         <button class="btn btn-default" type="button" uib-dropdown-toggle="">{{language.selected}}
+            <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu dropdown-menu-right animated fadeInUpShort" role="menu">
+            <li ng-repeat="(localeId, langName) in language.available"><a ng-click="language.set(localeId, $event)">{{langName}}</a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <!-- END Language list-->
+   {{ 'dashboard.WELCOME' | translate:{ appName: app.name } }}
+    <small>{{ 'dashboard.ENTRYPOINT' | translate }}</small>
+</h3>
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <!--<h2 class="text-thin">Latest App Activity</h2>
+        <div class="panel" id="panelChartOverall">
+            <div class="panel-heading">
+                <div class="panel-title">Rolling 24-hours User Activity</div>
+            </div>
+            <div class="panel-wrapper" uib-collapse="panelChartOverall">
+                <div class="panel-body">
+                    <flot dataset="data" options="barStackedOptions" height="300px"></flot>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>

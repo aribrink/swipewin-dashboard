@@ -1,0 +1,193 @@
+﻿<h3>
+    Market Draws
+    <small>Get all market draw details, modify or delete a selected one.</small>
+</h3>
+<div ng-controller="DrawController as scope">
+    <div class="panel panel-default" ng-hide="scope.draw">
+        <div class="panel-heading">
+            All draws
+        </div>
+        <div class="panel-body table-responsive b0">
+            <div>
+                <div class="text-right mt-lg">
+                    <button class="btn" type="button" ng-click="scope.newDraw()">Add new</button>
+                </div>
+                <table class="table table-striped table-hover" datatable="">
+                    <thead>
+                        <tr>
+                            <th>Draw ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Completed</th>
+                            <th>Deleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in scope.draws">
+                            <td><button class="btn btn-info" ng-click="scope.setDraw(item)" type="button">{{ item.id }}</button></td>
+                            <td>{{ item.title ? item.title.en : '' }}</td>
+                            <td>{{ item.description ? item.description.en : '' }}</td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled="disabled" ng-checked="item.isCompleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled="disabled" ng-checked="item.isDeleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col col-md-8"></div>
+                <div class="col col-md-4 input-group pull-right">
+                    <paging paging="scope.paging"></paging>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-hide="!scope.draw">
+        <div class="panel-body table-responsive b0">
+            <fieldset ng-show="scope.draw.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Deleted:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" disabled="disabled" ng-checked="scope.draw.isDeleted" />
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="scope.draw.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-10">
+                        <label class="form-control">{{scope.draw.id}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Title:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text language-object="scope.draw.title" default="en"></multi-lang-text>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Description:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text-area language-object="scope.draw.description" default="en"></multi-lang-text-area>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Completed:</label>
+                    <div class="col-md-2 switch">
+                        <input type="checkbox" ng-model="scope.draw.isCompleted" />
+                    </div>
+                    <div ng-if="scope.draw.isCompleted">
+                        <label class="col-md-2 control-label">Winner Id:</label>
+                        <div class="col-md-2 switch">
+                            <input type="text" ng-model="scope.draw.winner.id" />
+                        </div>
+                        <label class="col-md-2 control-label">Winner username:</label>
+                        <div class="col-md-2 switch">
+                            <input type="text" ng-model="scope.draw.winner.displayName" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Url:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" ng-model="scope.draw.imageUrl" />
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{scope.draw.imageUrl}}" alt="" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Square Url:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" ng-model="scope.draw.imageSquareUrl" />
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{scope.draw.imageSquareUrl}}" alt="" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Start Date:</label>
+                    <div class="col-md-10">
+                        <!--<input class="form-control" type="datetime" ng-model="scope.draw.startsAt" />-->
+                        <datetime-picker ng-model="scope.draw.startsAt"></datetime-picker>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label class="col-md-2 control-label">Termination Date:</label>
+                <div class="col-md-10">
+                    <!--<input class="form-control" type="datetime" ng-model="scope.draw.endsAt" />-->
+                    <datetime-picker ng-model="scope.draw.endsAt"></datetime-picker>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Ticket Cost:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="scope.draw.ticketCostInGems" />
+                    </div>
+                    <label class="col-md-2 control-label">Min ticket purchases:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="scope.draw.minTicketNumber" />
+                    </div>
+                    <label class="col-md-2 control-label">Max ticket purchases:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="scope.draw.maxTicketNumber" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Is Recurrent:</label>
+                    <div class="col-md-2 switch">
+                        <input type="checkbox" ng-checked="!!scope.draw.recurringPattern" />
+                    </div>
+                    <div ng-if="scope.draw.recurringPattern">
+                        <label class="col-md-2 control-label">Pattern:</label>
+                        <div class="col-md-2 switch">
+                            <input type="text" ng-model="scope.draw.recurringPattern" />
+                        </div>
+                        <label class="col-md-2 control-label">Parent draw ID:</label>
+                        <div class="col-md-2 switch">
+                            <input type="text" ng-model="scope.draw.recurringParentId" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+
+        <div class="text-right mt-lg">
+            <button class="btn" type="button" ng-click="scope.backToDraws()">Discard</button>
+            <button class="btn btn-success" type="button" ng-hide="scope.draw.id" ng-click="scope.saveNewDraw()">Insert</button>
+            <button class="btn btn-success" type="button" ng-show="scope.draw.id" ng-click="scope.updateDraw()">Save</button>
+            <button class="btn btn-warning" type="button" ng-show="scope.draw.id" ng-click="scope.deleteDraw()">Delete</button>
+        </div>
+
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</div>

@@ -1,0 +1,30 @@
+﻿<button class="btn btn-secondary btn-sm" type="button" ng-click="$ctrl.paging.firstPage()">1</button>
+<button class="btn btn-secondary btn-sm" ng-disabled="$ctrl.paging.page == 1" type="button" ng-click="$ctrl.paging.previousPage()">
+    <span class="btn-label">
+        <i class="fa fa-arrow-left"></i>
+    </span>
+</button>
+<button class="btn btn-primary btn-sm" disabled type="button" ng-click="">{{$ctrl.paging.page}}</button>
+<button class="btn btn-secondary btn-sm" type="button" ng-click="$ctrl.paging.nextPage()">
+    <span class="btn-label">
+        <i class="fa fa-arrow-right"></i>
+    </span>
+</button>
+<div class="btn-group" uib-dropdown="dropdown">
+    <button class="btn btn-default" type="button">Page results: {{$ctrl.paging.pageSize}}</button>
+    <button class="btn dropdown-toggle btn-primary" type="button" uib-dropdown-toggle="">
+        <span class="caret"></span>
+        <span class="sr-only">primary</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a ng-click="$ctrl.paging.setPageSize(10)">10</a>
+        </li>
+        <li>
+            <a ng-click="$ctrl.paging.setPageSize(25)">25</a>
+        </li>
+        <li>
+            <a ng-click="$ctrl.paging.setPageSize(50)">50</a>
+        </li>
+    </ul>
+</div>

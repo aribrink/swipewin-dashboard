@@ -1,0 +1,693 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Angle - Bootstrap Admin App + ReactJS</title>
+	
+	<meta name="description" content="">
+	<meta name="author" content="@themicon">
+	<meta name="copyright" content="@themicon">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2017-10-24T00:00:00+02:00">
+	
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	<link rel="stylesheet" href="assets/js/google-code-prettify/prettify.css" media="screen">
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+
+	
+	
+	<script src="assets/js/jquery.js"></script>
+	
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+	
+	<style>
+		html{background-color:#FFFFFF;color:#656565;}
+		::-moz-selection{background:#FCFCFD;color:#31BCE7;}
+		::selection{background:#FCFCFD;color:#31BCE7;}
+		#documenter_sidebar #documenter_logo{background-image:url();}
+		a{color:#31BCE7;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: -ms-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: -webkit-gradient(linear, 0 0, 0 31BCE7%, from(#F5F7FA), to(#31BCE7));
+			  background-image: -webkit-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: -o-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: linear-gradient(top, #31BCE7, #31BCE7);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31BCE7', endColorstr='#31BCE7', GradientType=0);
+			  border-color: #31BCE7 #31BCE7 #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #31BCE7 #31BCE7 #bfbfbf;
+		  background-color: #31BCE7;
+		}
+		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#F5F7FA;color:#3A3F51;}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #E1E2E3;-moz-text-shadow:1px 1px 0px #E1E2E3;text-shadow:1px 1px 0px #E1E2E3;}
+		#documenter_sidebar ul{border-top:1px solid #E1E2E3;}
+		#documenter_sidebar ul a{border-top:1px solid #E1E2E3;border-bottom:1px solid #E1E2E3;color:#3A3F51;}
+		#documenter_sidebar ul a:hover{background:#FCFCFD;color:#31BCE7;border-top:1px solid #FCFCFD;}
+		#documenter_sidebar ul a.current{background:#FCFCFD;color:#31BCE7;border-top:1px solid #FCFCFD;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body class="documenter-project-angle">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+				
+			<li><a href="#overview" title="Overview">Overview</a></li>
+			<li><a href="#getting_started" title="Getting started">Getting started</a>
+				<ul>
+					<li><a href="#getting_started_tips">Tips</a>
+					<li><a href="#getting_started_starting_the_app">Starting the app</a>
+				</ul>
+			</li>
+			<li><a href="#structure" title="Structure">Structure</a>
+				<ul>
+					<li><a href="#structure_main_folders_explanation">Main folders explanation</a>
+					<li><a href="#structure_custom_code">Custom code</a>
+				</ul>
+			</li>
+			<li><a href="#build" title="Build">Build</a>
+				<ul>
+					<li><a href="#build_main_commands">Main commands</a>
+					<li><a href="#build_base_href">Base Href</a>
+					<li><a href="#build_webpack_and_react_hot_loader">Webpack and React Hot Loader</a>
+				</ul>
+			</li>
+			<li><a href="#usage" title="Usage">Usage</a>
+				<ul>
+					<li><a href="#usage_layout">Layout</a>
+					<li><a href="#usage_jsx">JSX</a>
+					<li><a href="#usage_routes">Routes</a>
+					<li><a href="#usage_bootstrap_components">Bootstrap components</a>
+					<li><a href="#usage_writing_components">Writing components</a>
+					<li><a href="#usage_sass">SASS</a>
+					<li><a href="#usage_rtl">RTL</a>
+					<li><a href="#usage__nbsp">&nbsp;</a>
+				</ul>
+			</li>
+			<li><a href="#themes" title="Themes">Themes</a>
+				<ul>
+					<li><a href="#themes_from_sass_files">From SASS files</a>
+				</ul>
+			</li>
+			<li><a href="#seed_project" title="Seed Project">Seed Project</a></li>
+			<li><a href="#heroku" title="Heroku">Heroku</a></li>
+			<li><a href="#refactor" title="Refactor">Refactor</a></li>
+			<li><a href="#credits" title="Credits">Credits</a>
+				<ul>
+					<li><a href="#credits_a_href"http_vendor_creditshtml"vendor_assets_a">Vendor Assets</a>
+				</ul>
+			</li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright @themicon 2017<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.0</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+	<h1>Angle</h1>
+	<h2>Bootstrap Admin App + ReactJS</h2>
+	<div id="documenter_buttons">
+		<a href="https://wrapbootstrap.com/user/themicon" class="btn btn-primary btn-large">Support</a> 
+	</div>
+	<hr>
+	<ul>
+	<li>created: 01/05/2015</li>
+	<li>latest update: 10/24/2017</li>
+	<li>by: @themicon</li>
+	<li><a href=""></a></li>
+	
+	</ul>
+	<p></p>
+	</section>
+	
+	<section id="overview">
+	<div class="page-header"><h3>Overview</h3><hr class="notop"></div>
+<div>
+	This document aims to explain the best way to work with the product and its components.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>All the best and enjoy coding.</strong></div>
+</section>
+<section id="getting_started">
+	<div class="page-header"><h3>Getting started</h3><hr class="notop"></div>
+<h4 id="getting_started_tips">Tips</h4>
+<ul>
+	<li>
+		Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+	<li>
+		Explore the sources for ideas and sample code.</li>
+	<li>
+		Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags</li>
+	<li>
+		Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+	<li>
+		In case of error messages, someone might have seen it too, so you can try a Google search for a quick fix.</li>
+</ul>
+<div>
+	&nbsp;</div>
+<div>
+	<h4 id="getting_started_starting_the_app">Starting the app</h4>
+	<div>
+		Since this is a ReactJS based application you need a server (Apache, IIS, xampp, node, etc) to serve the html files and perform http request to load all views.</div>
+	<div>
+		&nbsp;</div>
+	<div class="alert alert-info">
+		<strong>Important! </strong>Opening the index.html with a double click (i.e. using file:// protocol) will show you only a blank page because there&rsquo;s no server that response to the requests made for each view in order to display the app interface.</div>
+</div>
+<p>
+	<strong>Webpack development server</strong></p>
+<p>
+	See section Build to install node and dependecies and then run webpack task to automatically serve the app</p>
+<p>
+	&nbsp;</p>
+<div>
+	&nbsp;</div>
+</section>
+<section id="structure">
+	<div class="page-header"><h3>Structure</h3><hr class="notop"></div>
+<div>
+	Before starting to customize the template, here are the project files organization structure:</div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre class="prettyprint lang-plain linenums">
++---app
+|   +---components
+|   |   +---Blog
+|   |   +---Charts
+|   |   +---Common
+|   |   +---Dashboard
+|   |   +---Ecommerce
+|   |   +---Elements
+|   |   +---Extras
+|   |   +---Forms
+|   |   +---Forum
+|   |   +---Layout
+|   |   +---Maps
+|   |   +---Pages
+|   |   +---Tables
+|   |   +---Widgets
+|   |   +---App.jsx
+|   |   +---index.html
+|   |   +---Vendor.jsx
+|   +---fonts
+|   +---img
+|   +---server
+|   |   +---i18n
+|   +---styles
+|       +---app
+|       +---bootstrap
+|       +---themes
++---node_modules
++---dist</pre>
+</div>
+<div>
+	&nbsp;</div>
+<h4 id="structure_main_folders_explanation">Main folders explanation</h4>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>dist/ folder</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	This folder contains the compiled files. This files are ready to deploy on your server.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>app/ folder</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	This folder contains the source files. You will find the following folders inside</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>styles</strong>/ This folder contains the SCSS files for the core styles and bootstrap styles.</div>
+<div>
+	<strong>app</strong>/ Here you will find JSX files for React components.</div>
+<div>
+	<strong>img</strong>/ Images used in the copy (only copied to dist folder)</div>
+<div>
+	<strong>fonts</strong>/ Fontsused in the copy (only copied to dist folder)</div>
+<div>
+	<strong>server</strong>/ Contains static json files used to emulate server calls</div>
+<div>
+	&nbsp;</div>
+<div>
+	<h4 id="structure_custom_code">Custom code</h4>
+	<div>
+		<strong>JSX</strong>: Add a new component folder to create new ReactJS components&nbsp;and import them into the file <strong>App.jsx</strong>, then follow the code examples to associate components to routes.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<strong>SASS</strong>: create a custom folder inside the sass folder and <strong>@import</strong> your files from <strong>app.scss</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		&nbsp;</div>
+	<div class="alert alert-info">
+		The premise is, the less you change the downloaded code, the easier will be to apply any updates. Try always to keep your own code the most separated as possible from the package code to easily apply new updates when necessary.</div>
+</div>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="build">
+	<div class="page-header"><h3>Build</h3><hr class="notop"></div>
+<div>
+	<strong>Node</strong>.js is a platform built on Chrome&rsquo;s JavaScript runtime for easily building fast, scalable network applications.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Webpack&nbsp;</strong>is a module bundler. This means webpack takes modules with dependencies and emits static assets representing those modules.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Installing tools</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	The following steps are intended to be an orientation guide, if you are not experienced with this you will need to learn more about it from Google :)</div>
+<div>
+	&nbsp;</div>
+<ul>
+	<li>
+		To install node and npm, go to <a href="http://nodejs.org/">http://nodejs.org/</a></li>
+	<li>
+		Download and install GIT for your platform <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></li>
+</ul>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Once you have all tools installed</strong></div>
+<div>
+	&nbsp;</div>
+<ul>
+	<li>
+		Open a terminal, in the root folder of the project, run the command <strong>npm install</strong>. This command will install all project dependencies.</li>
+</ul>
+<div>
+	<h4 id="build_main_commands">Main commands</h4>
+	<div>
+		This command will start a server in development mode</div>
+	<pre class="prettyprint lang-plain linenums">
+$ npm run start</pre>
+	<div>
+		This command will compile all files for distribution (dist folder)</div>
+	<pre class="prettyprint lang-plain linenums">
+$ npm run build</pre>
+	<h4 id="build_base_href">Base Href</h4>
+	<p>
+		If you need to set a base href for your project before compilation, set the environment variable&nbsp;<strong>WP_BASE_HREF</strong> and then run compilation.</p>
+	<p>
+		Example:</p>
+	<pre class="prettyprint lang-plain linenums">
+$ set WP_BASE_HREF=/some/web/path
+$ npm run build</pre>
+	<h4 id="build_webpack_and_react_hot_loader">Webpack and React Hot Loader</h4>
+	<p>
+		The application is built using <a href="https://webpack.github.io/">WebPack </a>which is a tool that analyze the code and builds a script ready for web browsers.</p>
+	<p>
+		The configuration of webpack is included in files:</p>
+	<div>
+		<strong>webpack.common.js</strong>: common setup for development and production</div>
+	<div>
+		<strong>webpack.dev.js</strong>: setup for development mode (hot-loader server)</div>
+	<div>
+		<strong>webpack.prod.js</strong>: setup for production mode</div>
+	<p>
+		<strong>react-hot-loader</strong> allows to reload components easily without waiting to recompile the entire app.</p>
+</div>
+<p>
+	&nbsp;</p>
+</section>
+<section id="usage">
+	<div class="page-header"><h3>Usage</h3><hr class="notop"></div>
+<h4 id="usage_layout">Layout</h4>
+<div>
+	Layout can be changed via the following classed applied to the body tag</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>.layout-fixed</strong>: Makes navbars become fixed while the user can scroll only content</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>.layout-boxed</strong>: Limits the width of the main wrapper element</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>.aside-collapsed</strong>: Condenses the sidebar showing only icons</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>.aside-collapsed-text</strong>: Condenses the sidebar showing icons and Text</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>.aside-toggle</strong>: used internally for mobiles to hide the sidebar off screen</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>.offsidebar-open</strong>: used internally to display the offsidebar component (formally the right sidebar)</div>
+<div>
+	&nbsp;</div>
+<div>
+	<div>
+		<h4 id="usage_jsx">JSX</h4>
+		<div>
+			The Javascript (JSX components) are bundled into one single that contains all react components declared under the <strong>components</strong> folder</div>
+		<div>
+			&nbsp;</div>
+		<div>
+			The application starts using the file&nbsp;<strong>App.jsx</strong>. This import all components and declare all routes associating components to each route.</div>
+		<div>
+			&nbsp;</div>
+		<div>
+			In <strong>Vendor.jsx</strong> you will find all imported third party dependencies, you can add more or remove anything here according to your project.</div>
+		<h4 id="usage_routes">Routes</h4>
+		<div>
+			&nbsp;</div>
+		<div>
+			To declare route we use <a href="https://github.com/reactjs/react-router">react-router </a>which is basically a routing library based on React components</div>
+		<div>
+			You can note that according to the layout you are using is necessary to wrap each route with a Base* layout component. Example</div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<pre class="prettyprint lang-html linenums">
+ReactDOM.render(
+    &lt;Router history={browserHistory}&gt;
+        &lt;Route path=&quot;/&quot; component={Base}&gt;
+
+            {/* Default route*/}
+            &lt;IndexRoute component={DashboardV1} /&gt;
+
+            ...
+
+        &lt;/Route&gt;
+
+        {/*Horizontal Layout*/}
+        &lt;Route path=&quot;/&quot; component={BaseHorizontal}&gt;
+            ...
+        &lt;/Route&gt;
+
+        {/*Pages*/}
+        &lt;Route path=&quot;/&quot; component={BasePage}&gt;
+            ...
+        &lt;/Route&gt;
+
+        {/* Not found handler */}
+        &lt;Route path=&quot;*&quot; component={NotFound}/&gt;
+
+    &lt;/Router&gt;,
+    document.getElementById(&#39;app&#39;)
+);</pre>
+		</div>
+		<div>
+			&nbsp;</div>
+		<h4 id="usage_bootstrap_components">Bootstrap components</h4>
+		<div>
+			&nbsp;</div>
+		<div>
+			To make the application the most ReactJS-friendly we have included <a href="https://react-bootstrap.github.io/">react-bootstrap </a>which is basically the popular framework rebuilt for React</div>
+		<h4 id="usage_writing_components">Writing components</h4>
+		<div>
+			&nbsp;</div>
+		<div>
+			Each component is declared using the following basic code using ES6</div>
+		<div>
+			<pre class="prettyprint lang-js linenums">
+import React from &#39;react&#39;;
+import ContentWrapper from &#39;../Layout/ContentWrapper&#39;;
+
+class MyComponent extends React.Component {
+
+    render() {
+        return (
+            &lt;ContentWrapper&gt;
+                ...
+            &lt;/ContentWrapper&gt;
+            );
+    }
+
+}
+
+export default MyComponent;</pre>
+			<div>
+				&nbsp;</div>
+			<div>
+				ContentWrapper is a component that must be used to wrap each view in the app.</div>
+			<div>
+				&nbsp;</div>
+		</div>
+		<div>
+			Then from the App.jsx you can import components with</div>
+		<pre class="prettyprint lang-js linenums">
+import MyComponent from &#39;./path/to/MyComponent&#39;;</pre>
+		<div>
+			&nbsp;</div>
+		<div>
+			To keep the Javascript that controls the behavior of plugins separated from the associated component we use the following convention to name files (optional)</div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<strong>MyComponent.run.js</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			As you can see, we are just adding the &quot;run&quot; word and the extension is JS</div>
+		<div>
+			Inside you can declare a function to be exported</div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<pre class="prettyprint lang-js linenums">
+export default function() {
+    // code..
+}</pre>
+			<div>
+				&nbsp;</div>
+		</div>
+		<div>
+			Then from the component JSX you can import this file</div>
+		<div>
+			&nbsp;</div>
+		<pre class="prettyprint lang-js linenums">
+import MyComponenttRun from &#39;./MyComponentt.run&#39;;</pre>
+		<div>
+			&nbsp;</div>
+		<div>
+			And using the&nbsp;componentDidMount() call the imported function</div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<pre class="prettyprint lang-js linenums">
+componentDidMount() {
+   MyComponenttRun();
+}</pre>
+			<div>
+				&nbsp;</div>
+		</div>
+		<h4 id="usage_sass">SASS</h4>
+		<div>
+			SASS files are used to compile the main application styles into the file<strong>&nbsp;app.css&nbsp;</strong>and the&nbsp;<u>custom Bootstrap</u>&nbsp;styles into&nbsp;<strong>bootstrap.css</strong></div>
+		<div>
+			&nbsp;</div>
+		<h4 id="usage_rtl">RTL</h4>
+		<div>
+			RTL is based on rtlcss plugin using a custom loader that allows to change the application styles into an RTL representation.</div>
+		<div>
+			To enable RTL open the file&nbsp;webpack.common.js and uncommment the line that uses the rtlcss-loader</div>
+		<div>
+			&nbsp;</div>
+		<pre class="prettyprint lang-js linenums">
+{
+   loader: &#39;rtlcss-loader&#39; // uncomment for RTL
+}</pre>
+		<div>
+			<h4 id="usage__nbsp">&nbsp;</h4>
+		</div>
+	</div>
+	<div>
+		&nbsp;</div>
+</div>
+<p>
+	&nbsp;</p>
+</section>
+<section id="themes">
+	<div class="page-header"><h3>Themes</h3><hr class="notop"></div>
+<p>
+	To change the color scheme:</p>
+<h4 id="themes_from_sass_files">From SASS files</h4>
+<div>
+	&nbsp;</div>
+<div>
+	Edit the SASS files in folder <strong>app/styles/app </strong>and the file <strong>app/styles/bootstrap/variables.scss</strong> to use the color you want.</div>
+<div>
+	Like Bootstrap, most of the colors are based on $brand-* variables.</div>
+<div>
+	&nbsp;</div>
+<div>
+	You can also edit the files in <strong>app/styles/themes </strong>folder to create your own set of color schemes.&nbsp;</div>
+<div>
+	See the file&nbsp;app/components/Common/load-themes.js to lear how theme are imported and included into the page.</div>
+<div>
+	&nbsp;</div>
+<div class="alert alert-info">
+	Changing the theme colors from SASS files helps you to avoid bloating your css by not double declaring your color rules.</div>
+<div>
+	&nbsp;</div>
+</section>
+<section id="seed_project">
+	<div class="page-header"><h3>Seed Project</h3><hr class="notop"></div>
+<div>
+	This project is an application skeleton. You can use it to quickly bootstrap your ReactJS webapp projects and dev environment for these projects.&nbsp;</div>
+<div>
+	The seed app doesn&#39;t do much and has most of the feature removed so you can add theme as per your needs just following the demo app examples.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<div>
+		This project is provided in order to start with the template using a different approach. Usually, templates will come with all features working and you need to remove them one by one in the way you don&#39;t need them.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		With the seed project you can start adding custom features and others from the full project to make grow your app.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		Since the files and structure is the same for the full and seed projects, you can save time using comparison tools that allows to apply changes from full features project into the seed project.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		&nbsp;</div>
+</div>
+<p>
+	&nbsp;</p>
+</section>
+<section id="heroku">
+	<div class="page-header"><h3>Heroku</h3><hr class="notop"></div>
+<p>
+	In first place we have to create the following files used by Heroku to run a server. Place this new files in the root folder of the project</p>
+<p>
+	<strong>Procfile</strong></p>
+<pre class="prettyprint lang-plain linenums">
+web: node server.js</pre>
+<div>
+	<strong>server.js</strong></div>
+<div>
+	<pre class="prettyprint lang-js linenums">
+var express = require(&#39;express&#39;);
+var app = express();
+var path = require(&#39;path&#39;);
+
+app.use(express.static(path.resolve(__dirname, &#39;dist&#39;)));
+
+app.get(&#39;*&#39;, (req, res) =&gt; {
+    res.sendFile(path.resolve(__dirname, &#39;dist&#39;, &#39;index.html&#39;));
+});
+
+app.listen(process.env.PORT || 9090);</pre>
+	<div>
+		&nbsp;</div>
+	<div>
+		Follow this steps to deploy this application to heroku:</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<div>
+			<ol>
+				<li>
+					Run <strong>heroku login</strong> to login on heroku with your credentials</li>
+				<li>
+					Start a new repot with <strong>git init</strong></li>
+				<li>
+					Create your application with <strong>heroku create app-name</strong></li>
+				<li>
+					Add files for commit with <strong>git add .</strong></li>
+				<li>
+					Commit files <strong>git commit -m &quot;initial commit&quot;</strong></li>
+				<li>
+					Run <strong>heroku config:set NPM_CONFIG_PRODUCTION=false</strong></li>
+				<li>
+					Rename in <strong>package.json</strong> script named: &quot;postinstall-heroku&quot; to &quot;postinstall&quot;</li>
+				<li>
+					Upload to heroku: <strong>git push heroku master</strong></li>
+				<li>
+					If everything went fine, open in browser with <strong>heroku open</strong></li>
+			</ol>
+			<p>
+				&nbsp;</p>
+		</div>
+	</div>
+</div>
+<p>
+	&nbsp;</p>
+</section>
+<section id="refactor">
+	<div class="page-header"><h3>Refactor</h3><hr class="notop"></div>
+<p>
+	This section provides a brief description of the new structure. The main change is that we have removed the entire Gulp and BrowserSync workflow in favor of using only Webpack which is a more used and suitable build tool for a React development.</p>
+<p>
+	<strong>Folders</strong></p>
+<p>
+	&#39;<strong>master</strong>&#39; has been renamed to &#39;<strong>app</strong>&#39;</p>
+<p>
+	&#39;<strong>jsx</strong>&#39; folder has been removed and all component resides under &#39;<strong>components</strong>&#39;</p>
+<p>
+	&#39;<strong>sass</strong>&#39; folder has been renamed to &#39;<strong>styles</strong>&#39;</p>
+<p>
+	The new folder &#39;<strong>fonts&#39;</strong> is used to store all font files used in the project</p>
+<p>
+	<strong>Vendor</strong></p>
+<p>
+	The new file <strong>Vendor.jsx</strong> is used now replacing the old plain &#39;vendor.json&#39;<br>
+	Using this file we can import all third party assets into the app allowing a more flexible inclusion of vendor assets.</p>
+<p>
+	<strong>Themes</strong></p>
+<p>
+	Themes are used in a different way, instead of requesting the stylesheets with the removed load-css script, they are imported into the main bundle and injected into the app by creating a style tag into the head section. The new file that handles this behavior is <strong>/components/Common/load-themes.js</strong></p>
+<p>
+	<strong>Other minor changes</strong></p>
+<p>
+	Separated from the purpose of this little refactor, we have improved things and fixed other minor bugs, like the correct use of Link tags, updated react-router to 3.0.0, fixed a bug with the routes reload and other minor changes.</p>
+<p>
+	Since there&#39;s no automatic process to upgrade this product, we suggest you to use any comparison tool like WinMerge, BeyondCompare or Kaleidoscope. By comparing the folder your are working on against the new folders you can see the difference and implement new changes.</p>
+</section>
+<section id="credits">
+	<div class="page-header"><h3>Credits</h3><hr class="notop"></div>
+<h4 id="credits_a_href"http_vendor_creditshtml"vendor_assets_a"><a href="http://vendor-credits.html">Vendor Assets</a></h4>
+</section>
+
+	</div>
+</body>
+</html>

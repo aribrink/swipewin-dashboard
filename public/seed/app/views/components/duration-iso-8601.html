@@ -1,0 +1,107 @@
+﻿<div>
+    <!--{{$ctrl.duration}}-->
+    <table>
+        <tr>
+            <td colspan="3" align="center">Years</td>
+            <td colspan="3" align="center">Months</td>
+            <td colspan="3" align="center">Days</td>
+            <td></td>
+            <td colspan="3" align="center">Hours</td>
+            <td colspan="3" align="center">Minutes</td>
+            <td colspan="3" align="center">Seconds</td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeYears(-1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+            </td>
+            <td ng-style="$ctrl.years === 0? {'font-weight':  'normal', 'font-size': 'initial'} : {'font-weight': 'bolder', 'font-size': 'larger'}">{{$ctrl.years}}</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeYears(1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeMonths(-1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+            </td>
+            <td ng-style="$ctrl.months === 0? {'font-weight':  'normal', 'font-size': 'initial'} : {'font-weight': 'bolder', 'font-size': 'larger'}">{{$ctrl.months}}</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeMonths(1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeDays(-1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+            </td>
+            <td ng-style="$ctrl.days === 0? {'font-weight':  'normal', 'font-size': 'initial'} : {'font-weight': 'bolder', 'font-size': 'larger'}">{{$ctrl.days}}</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeDays(1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </td>
+            <td>:</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeHours(-1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+            </td>
+            <td ng-style="$ctrl.hours === 0? {'font-weight':  'normal', 'font-size': 'initial'} : {'font-weight': 'bolder', 'font-size': 'larger'}">{{$ctrl.hours}}</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeHours(1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeMinutes(-1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+            </td>
+            <td ng-style="$ctrl.minutes === 0? {'font-weight':  'normal', 'font-size': 'initial'} : {'font-weight': 'bolder', 'font-size': 'larger'}">{{$ctrl.minutes}}</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeMinutes(1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeSeconds(-1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+            </td>
+            <td ng-style="$ctrl.seconds === 0? {'font-weight':  'normal', 'font-size': 'initial'} : {'font-weight': 'bolder', 'font-size': 'larger'}">{{$ctrl.seconds}}</td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.changeSeconds(1)">
+                    <span class="btn-label">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

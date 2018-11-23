@@ -1,0 +1,124 @@
+﻿<h3>
+    UserIcons
+    <small>Manage all app userIcons.</small>
+</h3>
+<div ng-controller="UserIconController as ctrl">
+    <div class="panel panel-default" ng-hide="ctrl.userIcon">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col col-md-10">
+                    <button class="btn btn-default" ng-click="ctrl.getAllUserIcons()">
+                        <span class="btn-label">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </span>
+                    </button>
+                </div>
+                <div class="col col-md-2 pull-right">
+                    <div class="text-right">
+                        <button class="btn" type="button" ng-click="ctrl.newUserIcon()">Add new</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive b0">
+            <div>
+                <table class="table table-striped table-hover" datatable="">
+                    <thead>
+                        <tr>
+                            <th>UserIcon ID</th>
+                            <th>Image</th>
+                            <th>Locked</th>
+                            <th>Deleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.userIcons">
+                            <!--<td><a ui-sref-active="active" ui-sref="app.userIcons_detail({ userIconId: item.id })">{{ item.id }}</a></td>-->
+                            <td><button class="btn btn-info" ng-click="ctrl.setUserIcon(item)" type="button">{{ item.id }}</button></td>
+                            <td>
+                                <img class="img-rounded thumb80" default-portrait src="{{item.imageUrl}}" alt="" />
+                            </td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled ng-checked="item.isLocked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled ng-checked="item.isDeleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col col-md-8"></div>
+                <div class="col col-md-4 input-group pull-right">
+                    <paging paging="ctrl.paging"></paging>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-hide="!ctrl.userIcon">
+        <div class="panel-body table-responsive b0">
+            <fieldset ng-show="ctrl.userIcon.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Deleted:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" disabled="disabled" ng-checked="ctrl.userIcon.isDeleted" />
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="ctrl.userIcon.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-10">
+                        <label class="form-control">{{ctrl.userIcon.id}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Url:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="url" ng-model="ctrl.userIcon.imageUrl" min="1" />
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" default-portrait src="{{ctrl.userIcon.imageUrl}}" alt="" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Locked:</label>
+                    <div class="col-md-2 switch">
+                        <input type="checkbox" ng-checked="ctrl.userIcon.isLocked" />
+                        <span></span>
+                    </div>
+                    <label class="col-md-2 control-label">Cost (gems):</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="ctrl.userIcon.costInGems" />
+                    </div>
+                    <label class="col-md-2 control-label">Cost (coins):</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="ctrl.userIcon.costInCoins" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="text-right mt-lg">
+            <button class="btn" type="button" ng-click="ctrl.backToUserIcons()">Discard</button>
+            <button class="btn btn-success" type="button" ng-hide="ctrl.userIcon.id" ng-click="ctrl.saveNewUserIcon()">Insert</button>
+            <button class="btn btn-success" type="button" ng-show="ctrl.userIcon.id" ng-click="ctrl.updateUserIcon()">Save</button>
+            <button class="btn btn-warning" type="button" ng-show="ctrl.userIcon.id" ng-click="ctrl.deleteUserIcon()">Delete</button>
+        </div>
+
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</div>

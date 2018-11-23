@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <div class="col col-md-2">
+        <label>{{labelFrom}}</label>
+    </div>
+    <div class="col col-md-2">
+        <label>{{labelTo}}</label>
+    </div>
+    <div class="col col-md-1">
+    </div>
+</div>
+<div class="row">
+    <div class="col col-md-2">
+            <!--<select class="form-control" ng-options="o as o.text for o in dateFromOptions" ng-change="changeRangeFrom()" ng-model="filter.from">
+                <option value="">-- select --</option>
+            </select>-->
+            <p class="input-group">
+                <input class="form-control" type="text" name="date" required="" uib-datepicker-popup="{{format}}" ng-model="filter.from.text" ng-model-options="{ timezone: 'UTC' }" is-open="fromDate.opened" clear-date="fromDate.clear()" min-date="fromDate.minDate" max-date="'2019-12-22'" uib-datepicker-options="dateOptions"
+                       date-disabled="fromDate.disabled(date, mode)" close-text="Close" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="fromDate.open($event)">
+                        <em class="fa fa-calendar"></em>
+                    </button>
+                </span>
+            </p>
+            <span class="text-danger" ng-show="form.validateInput('date', 'required')">This field is required</span>
+    </div>
+    <div class="col col-md-2">
+            <!--<select class="form-control" ng-options="o as o.text for o in dateToOptions" ng-change="changeRangeTo()" ng-model="filter.to">
+                <option value="">-- select --</option>
+            </select>-->
+        <p class="input-group">
+            <input class="form-control" type="text" name="date" required="" uib-datepicker-popup="{{format}}" ng-model="filter.to.text" ng-model-options="{ timezone: 'UTC' }" is-open="toDate.opened" clear-date="fromDate.clear()" min-date="toDate.minDate" max-date="'2019-12-22'" uib-datepicker-options="dateOptions"
+                   date-disabled="toDate.disabled(date, mode)" close-text="Close" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="toDate.open($event)">
+                    <em class="fa fa-calendar"></em>
+                </button>
+            </span>
+        </p>
+        <span class="text-danger" ng-show="form.validateInput('date', 'required')">This field is required</span>
+    </div>
+    <div class="col col-md-1">
+        <button class="mb-sm btn btn-default" type="button" ng-click="refreshForDateRange(filter)">
+            <em class="fa fa-refresh"></em>
+            Refresh
+        </button>
+    </div>
+</div>
+
+
+

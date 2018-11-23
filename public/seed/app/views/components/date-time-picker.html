@@ -1,0 +1,51 @@
+﻿<!--{{$ctrl.ngModel}}-->
+<div class="row">
+    <div class="col col-md-12">
+        <div class="input-group">
+            <span class="input-group-btn" id="addon-date">
+                <button class="btn btn-default" type="button" ng-click="$ctrl.data.open($event)">
+                    <em class="fa fa-calendar"></em>
+                </button>
+            </span>
+            <input class="form-control" ng-required="$ctrl.required || $ctrl.ngRequired" type="text" name="date" required="" uib-datepicker-popup="{{$ctrl.format}}" ng-model="$ctrl.data.dt" ng-change="$ctrl.data.onDateChange()" ng-model-options="{ timezone: 'UTC' }" is-open="$ctrl.data.opened" clear-date="$ctrl.data.clear()" min-date="$ctrl.data.minDate" max-date="'2019-12-22'" uib-datepicker-options="$ctrl.dateOptions"
+                   date-disabled="$ctrl.data.disabled(date, mode)" close-text="Close" />
+            <!--<span class="input-group-addon" id="addon-time"><em class="fa fa-clock-o"></em> <em class="fa fa-angle-right"></em></span>-->
+            <span class="input-group-btn" id="addon-time">
+                <button class="btn" type="button">
+                    <em class="fa fa-clock-o"></em>
+                </button>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.hourDown()">
+                    <em class="fa fa-angle-down"></em>
+                </button>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.hourUp()">
+                    <em class="fa fa-angle-up"></em>
+                </button>
+                <button class="btn">{{$ctrl.data.hours < 10 ? '0' + $ctrl.data.hours : $ctrl.data.hours}}:{{$ctrl.data.minutes < 10 ? '0' + $ctrl.data.minutes : $ctrl.data.minutes}}</button>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.minuteDown()">
+                    <em class="fa fa-angle-down"></em>
+                </button>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.minuteUp()">
+                    <em class="fa fa-angle-up"></em>
+                </button>
+            </span>
+        </div>
+    </div>
+    <!--<div class="col col-md-6">
+        <button class="btn btn-default" type="button" ng-click="$ctrl.hourDown()">
+            <em class="fa fa-angle-down"></em>
+        </button>
+        <span>{{$ctrl.data.hours}}</span>
+        <button class="btn btn-default" type="button" ng-click="$ctrl.hourUp()">
+            <em class="fa fa-angle-up"></em>
+        </button>
+        <span>:</span>
+        <button class="btn btn-default" type="button" ng-click="$ctrl.minuteDown()">
+            <em class="fa fa-angle-down"></em>
+        </button>
+        <span>{{$ctrl.data.minutes}}</span>
+        <button class="btn btn-default" type="button" ng-click="$ctrl.minuteUp()">
+            <em class="fa fa-angle-up"></em>
+        </button>
+    </div>-->
+    <span class="text-danger" ng-show="$ctrl.validateInput('date')">This field is required</span>
+</div>

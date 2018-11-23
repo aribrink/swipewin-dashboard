@@ -1,0 +1,63 @@
+[
+  {
+    "text": "Menu Heading",
+    "heading": "true",
+    "translate": "sidebar.heading.HEADER"
+  },
+  {
+    "text": "Home",
+    "sref": "app.home",
+    "icon": "icon-grid",
+    "translate": "sidebar.nav.HOME"
+  },
+  {
+    "text": "App",
+    "sref": "app.game_settings",
+    "icon": "icon-equalizer",
+    "translate": "sidebar.nav.menu.APP"
+  },
+  {
+    "text": "Draws",
+    "sref": "app.draws",
+    "icon": "icon-globe-alt",
+    "translate": "sidebar.nav.menu.DRAWS"
+  },
+  {
+    "text": "Prizes",
+    "sref": "app.instant_prizes",
+    "icon": "icon-present",
+    "translate": "sidebar.nav.menu.PRIZES"
+  },
+  {
+    "text": "Questions",
+    "sref": "app.questions",
+    "icon": "icon-question",
+    "submenu": [
+      {
+        "text": "Import",
+        "sref": "app.questions_import",
+        "translate": "sidebar.nav.menu.IMPORT"
+      }
+    ],
+    "translate": "sidebar.nav.menu.QUESTIONS"
+  },
+  {
+    "text": "Users",
+    "sref": "app.users",
+    "translate": "sidebar.nav.menu.USERS",
+    "icon": "fa fa-users",
+    "submenu": [
+      {
+        "text": "Icons",
+        "sref": "app.user_icons",
+        "icon": "fa fa-file-image-o",
+        "translate": "sidebar.nav.menu.USERICONS"
+      }
+    ]
+  },
+  {
+    "text": "Logout",
+    "sref": "app.logout",
+    "icon": "icon-logout"
+  }
+]

@@ -1,0 +1,150 @@
+﻿<h3>
+    Announcements
+    <small>Manage all app announcements.</small>
+</h3>
+<div ng-controller="AnnouncementController as ctrl">
+    <div class="panel panel-default" ng-hide="ctrl.announcement">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col col-md-10">
+                    <button class="btn btn-default" ng-click="ctrl.getAllAnnouncements()">
+                        <span class="btn-label">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </span>
+                    </button>
+                </div>
+                <div class="col col-md-2 pull-right">
+                    <div class="text-right">
+                        <button class="btn" type="button" ng-click="ctrl.newAnnouncement()">Add new</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive b0">
+            <div>
+                <table class="table table-striped table-hover" datatable="">
+                    <thead>
+                        <tr>
+                            <th>Announcement ID</th>
+                            <th>Title</th>
+                            <th>Time</th>
+                            <th>Deleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ctrl.announcements">
+                            <!--<td><a ui-sref-active="active" ui-sref="app.announcements_detail({ announcementId: item.id })">{{ item.id }}</a></td>-->
+                            <td><button class="btn btn-info" ng-click="ctrl.setAnnouncement(item)" type="button">{{ item.id }}</button></td>
+                            <td>{{ item.title ? item.title.en : '' }}</td>
+                            <td>{{ item.time }}</td>
+                            <td>
+                                <label class="col-md-10 switch">
+                                    <input type="checkbox" disabled="disabled" ng-checked="item.isDeleted" />
+                                    <span></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col col-md-8"></div>
+                <div class="col col-md-4 input-group pull-right">
+                    <paging paging="ctrl.paging"></paging>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="ctrl.announcement">
+        <div class="panel-body table-responsive b0">
+            <fieldset ng-show="ctrl.announcement.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Deleted:</label>
+                    <div class="col-md-10 switch">
+                        <input type="checkbox" disabled="disabled" ng-checked="ctrl.announcement.isDeleted" />
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="ctrl.announcement.id">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-10">
+                        <label class="form-control">{{ctrl.announcement.id}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Title:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text language-object="ctrl.announcement.title" default="en"></multi-lang-text>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Text:</label>
+                    <div class="col-md-10">
+                        <multi-lang-text-area language-object="ctrl.announcement.text" default="en"></multi-lang-text-area>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Link Url:</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="url" ng-model="ctrl.announcement.link" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Activation Time:</label>
+                    <div class="col-md-10">
+                        <datetime-picker ng-model="ctrl.announcement.time"></datetime-picker>
+                        <!--<input class="form-control" type="datetime" ng-model="ctrl.announcement.time" />-->
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Image Url:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="url" ng-model="ctrl.announcement.imageUrl" min="1" />
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-rounded thumb80" src="{{ctrl.announcement.imageUrl}}" alt="" />
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Internal link View:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" ng-model="ctrl.announcement.internalLink.view" />
+                    </div>
+                    <label class="col-md-2 control-label">Id:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" ng-model="ctrl.announcement.internalLink.id" />
+                    </div>
+                    <label class="col-md-2 control-label">Action:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" ng-model="ctrl.announcement.internalLink.action" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="text-right mt-lg">
+            <button class="btn" type="button" ng-click="ctrl.backToAnnouncements()">Discard</button>
+            <button class="btn btn-success" type="button" ng-hide="ctrl.announcement.id" ng-click="ctrl.saveNewAnnouncement()">Insert</button>
+            <button class="btn btn-success" type="button" ng-show="ctrl.announcement.id" ng-click="ctrl.updateAnnouncement()">Save</button>
+            <button class="btn btn-warning" type="button" ng-show="ctrl.announcement.id" ng-click="ctrl.deleteAnnouncement()">Delete</button>
+        </div>
+
+    </div>
+
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+</div>
