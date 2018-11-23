@@ -2476,7 +2476,7 @@
             else {
                 service.settings = {
                     environment: 'development',
-                    backendUrl: 'http://swipewin.herokuapp.com/'
+                    backendUrl: 'https://swipewin.herokuapp.com/'
                 };
             }
             service.FetchGameSettings();
@@ -2517,7 +2517,7 @@
 
             if (env === 'development' || env === 'production' || env === 'local') {
                 if (env === 'development')
-                    service.settings.backendUrl = 'http://swipewin.herokuapp.com/';
+                    service.settings.backendUrl = 'https://swipewin.herokuapp.com/';
                 else if (env === 'production')
                     service.settings.backendUrl = 'https://swipewin.herokuapp.com/';
                 else if (env === 'local')
